@@ -15,6 +15,11 @@ export const config = {
      * - images - .svg, .png, .jpg, .jpeg, .gif, .webp
      * Feel free to modify this pattern to include more paths.
      */
-    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
+    // Permit unauthenticated access to /store and /chat routes
+    // Estas rutas se excluyen del middleware de autenticación, permitiendo el acceso libre.
+    // El patrón negativo (?!store|chat) asegura que cualquier ruta que comience con /store o /chat
+    // no será interceptada por este middleware.
+  
+    "/((?!_next/static|_next/image|favicon.ico|store|chat|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
   ],
 };

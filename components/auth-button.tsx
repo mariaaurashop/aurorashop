@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 import { createClient } from "@/lib/supabase/server";
 import { LogoutButton } from "./logout-button";
+import { ShoppingCart } from "lucide-react";
 
 export async function AuthButton() {
   const supabase = await createClient();
@@ -13,17 +14,22 @@ export async function AuthButton() {
 
   return user ? (
     <div className="flex items-center gap-4">
-      Hey, {user.email}!
+      Hola, {user.email}!
+      <Link href="/store" className="font-bold text-md text-neutral-700">Tienda</Link>
+      <Link href="/chat" className="font-bold text-md text-neutral-700">Chat bot</Link>
+       <Link href="/car" className="font-bold text-md text-neutral-700 p-2 rounded-lg bg-neutral-100"><ShoppingCart/></Link>
+     
       <LogoutButton />
     </div>
   ) : (
-    <div className="flex gap-2">
-      <Button asChild size="sm" variant={"outline"}>
-        <Link href="/auth/login">Sign in</Link>
+    <div className="flex gap-4 flex-row items-center justify-center">
+      <Link href="/store" className="font-bold text-md text-neutral-700">Tienda</Link>
+      <Link href="/chat" className="font-bold text-md text-neutral-700">Chat bot</Link>
+      <Link href="/car" className="font-bold text-md text-neutral-700 p-2 rounded-lg bg-neutral-100"><ShoppingCart/></Link>
+      <Button asChild size="sm" variant={"default"} className="bg-indigo-600 hover:bg-indigo-800">
+        <Link href="/auth/login" className="font-bold text-md ">Iniciar sesión</Link>
       </Button>
-      <Button asChild size="sm" variant={"default"}>
-        <Link href="/auth/sign-up">Sign up</Link>
-      </Button>
+      
     </div>
   );
 }
