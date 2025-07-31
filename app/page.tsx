@@ -1,11 +1,9 @@
-import { AuthButton } from "@/components/auth-button";
-import { ThemeSwitcher } from "@/components/theme-switcher";
+
 import Link from "next/link";
 import aurora from "./public/aurora.png"
 import select from "./public/select.jpg"
 import recomendation from "./public/recomendation.jpg"
 import Image from "next/image";
-import { ShoppingBagIcon } from "lucide-react";
 
 export default function Home() {
   return (
