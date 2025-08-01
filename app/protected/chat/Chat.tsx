@@ -32,16 +32,10 @@ const Chats = ({user}:{user:string|undefined}) => {
 
     const handleSend = async () => {
         if (!input.trim()) return;
-        const userMessage: Message = {
-            id: Date.now(),
-            role: "user",
-            content: input,
-        };
         const res= await fetch("/api/chat",{method:"POST",body:JSON.stringify({
             user_id:user,
             message:input,
         })})
-        const data= await res.json()
         if(res.status!==200){
             redirect("/protected/chat/?error=hubo un error")
         }
@@ -49,7 +43,7 @@ const Chats = ({user}:{user:string|undefined}) => {
         setLoading(true);
         const supabase= createClient()
         
-        let { data: message, error } = await supabase
+        const{ data: message } = await supabase
         .from('message')
         .select('*')
         if(message){
@@ -66,7 +60,7 @@ const Chats = ({user}:{user:string|undefined}) => {
     useEffect(()=>{
         const supa=async()=>{
         const supabase= createClient()
-        let { data: message, error } = await supabase
+        const { data: message} = await supabase
         .from('message')
         .select('*')
         if(message){
@@ -85,7 +79,7 @@ const Chats = ({user}:{user:string|undefined}) => {
             <CardContent className="flex-1 p-0 bg-gray-50">
                 <ScrollArea className="h-full max-h-[60vh] px-4 py-6">
                     {messages?.map((msg) =>
-                   {  console.log(msg)
+                   {  
                         return(
                         <div
                             key={msg.id}
