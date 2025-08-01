@@ -1,3 +1,5 @@
+"use client"
+import { CartProvider } from "@/context/CarContext";
 
 
 export default function ProtectedLayout({
@@ -6,8 +8,9 @@ export default function ProtectedLayout({
   children: React.ReactNode;
 }) {
   return (
-    <>
-          {children}
+    <>  <CartProvider>
+          {children}  
+          </CartProvider>
     </>
   );
 }

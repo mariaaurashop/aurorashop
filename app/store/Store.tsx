@@ -7,8 +7,10 @@ import { ShoppingCartIcon } from 'lucide-react';
 import React, { useState } from 'react';
 import img from "../public/img.webp"
 import Image from 'next/image';
+import { useCart } from '@/context/CarContext';
 
 const Store = () => {
+    const { addToCart } = useCart();
     // Mock data
     const products = [
         { id: 1, name: "Camiseta Básica", category: "Camisetas", price: 19.99, image:img },
@@ -72,7 +74,7 @@ const Store = () => {
                             <CardContent>
                                 <div className="flex justify-between items-center">
                                     <span className="font-semibold text-lg">${product?.price?.toFixed(2)}</span>
-                                    <Button className='bg-indigo-700 hover:bg-indigo-800'>
+                                    <Button onClick={() => addToCart(product)} className='bg-indigo-700 hover:bg-indigo-800'>
                                         <ShoppingCartIcon className='w-6 h-6 text-white'/>
                                     </Button>
                                 </div>

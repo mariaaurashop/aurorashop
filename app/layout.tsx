@@ -14,7 +14,7 @@ const defaultUrl = process.env.VERCEL_URL
 export const metadata: Metadata = {
   metadataBase: new URL(defaultUrl),
   title: "AuroraShop",
-  description: "Tu tienda onlne potenciada con IA.",
+  description: "Tu tienda online potenciada con IA.",
 };
 
 const geistSans = Geist({
@@ -31,6 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.className} antialiased`}>
+        
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -42,7 +43,7 @@ export default function RootLayout({
                   <div className="w-full max-w-5xl flex justify-between items-center p-3 px-5 text-sm">
                     <div className="flex gap-2 flex-row items-center font-semibold">
                       <ShoppingBagIcon className="text-2xl text-neutral-500  font-bold w-8 h-8"/>
-                      <Link href={"/"} className="text-2xl text-neutral-500  font-bold">AuroraShop</Link>
+                      <Link href={"/"} className="text-2xl text-neutral-500  font-bold md:flex hidden">AuroraShop</Link>
                     </div>
                     <AuthButton/>
                   </div>
